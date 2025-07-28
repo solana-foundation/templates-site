@@ -1,14 +1,7 @@
-export default async function DevelopersTemplatesDetailPage({
-  params,
-}: {
-  params: Promise<{ source: string; name: string }>
-}) {
+import { TemplatesUiLayoutDetail } from '@/components/templates/templates-ui-layout-detail'
+
+export default async function TemplateDetailPage({ params }: { params: Promise<{ name: string; source: string }> }) {
   const { name, source } = await params
 
-  return (
-    <div>
-      <h1>Template {name}</h1>
-      <p>Source: {source}</p>
-    </div>
-  )
+  return <TemplatesUiLayoutDetail name={name} source={source} />
 }

@@ -1,10 +1,12 @@
-import Link from 'next/link'
+import { Suspense } from 'react'
+import { AppHero } from '@/components/app-hero'
+import { TemplatesUiLayoutList } from '@/components/templates/templates-ui-layout-list'
 
-export default function DevelopersTemplatesListPage() {
+export default function Home() {
   return (
-    <div>
-      <h1>Templates</h1>
-      <Link href="/developers/templates/source-test/id-test">Test Template Detail</Link>
-    </div>
+    <Suspense>
+      <AppHero title="Templates" subtitle="Jumpstart your app development process with these pre-built solutions." />
+      <TemplatesUiLayoutList />
+    </Suspense>
   )
 }
