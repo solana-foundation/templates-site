@@ -33,26 +33,8 @@
           "name": "React Native"
         },
         {
-          "id": "express",
-          "name": "Express"
-        },
-        {
           "id": "node",
           "name": "Node"
-        }
-      ]
-    },
-    {
-      "id": "styling",
-      "name": "Styling",
-      "keywords": [
-        {
-          "id": "tailwind",
-          "name": "Tailwind"
-        },
-        {
-          "id": "react-native-paper",
-          "name": "React Native Paper"
         }
       ]
     },

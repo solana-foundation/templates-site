@@ -16,8 +16,6 @@ import solanaWeb3jsNextTailwindCounter from './images/solana-web3js-next-tailwin
 import solanaWeb3jsReactViteTailwind from './images/solana-web3js-react-vite-tailwind.png'
 import solanaWeb3jsReactViteTailwindBasic from './images/solana-web3js-react-vite-tailwind-basic.png'
 import solanaWeb3jsReactViteTailwindCounter from './images/solana-web3js-react-vite-tailwind-counter.png'
-import solanaMobileWeb3jsExpo from './images/solana-mobile-web3js-expo.png'
-import solanaMobileWeb3jsExpoPaper from './images/solana-mobile-web3js-expo-paper.png'
 
 export const images: Record<string, StaticImageData> = {
   'solana-gill-next-tailwind': solanaGillNextTailwind,
@@ -36,6 +34,4 @@ export const images: Record<string, StaticImageData> = {
   'solana-web3js-react-vite-tailwind': solanaWeb3jsReactViteTailwind,
   'solana-web3js-react-vite-tailwind-basic': solanaWeb3jsReactViteTailwindBasic,
   'solana-web3js-react-vite-tailwind-counter': solanaWeb3jsReactViteTailwindCounter,
-  'solana-mobile-web3js-expo': solanaMobileWeb3jsExpo,
-  'solana-mobile-web3js-expo-paper': solanaMobileWeb3jsExpoPaper,
 }
