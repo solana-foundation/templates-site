@@ -19,7 +19,7 @@ export function TemplatesUiSidebarDetail({ template }: { template: RepokitTempla
       <div className="border rounded-lg p-4 space-y-4">
         <div className="flex flex-col gap-2">
           <h3 className="text-lg font-bold">{template.name}</h3>
-          <p className="text-sm text-gray-500">{template.description}</p>
+          <p className="text-sm text-neutral-500">{template.description}</p>
         </div>
         <div className="space-y-2">
           <p className="flex justify-between text-sm">

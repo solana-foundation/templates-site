@@ -8,6 +8,9 @@ const pms = ['bun', 'npm', 'pnpm', 'yarn']
 
 function getCommand(pm: string, template: string) {
   switch (pm) {
+    case 'npm':
+      // NPM supports the '@latest' task but `npm create solana-dapp@latest` does not take any parameters (eg, -t ...)
+      return `npx -y create-solana-dapp@latest -t ${template}`
     case 'yarn':
       // Yarn only supports the `latest` tag
       return `yarn create solana-dapp -t ${template}`
@@ -53,7 +56,7 @@ export function TemplatesUiGenerateCommand({ template: { source, path } }: { tem
         ))}
       </div>
       <div className="relative">
-        <pre className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 my-4 pr-12 truncate">{command}</pre>
+        <pre className="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-4 my-4 pr-12 truncate">{command}</pre>
         <Button variant="ghost" size="icon" className="absolute top-1/2 right-2 -translate-y-1/2" onClick={handleCopy}>
           {isCopied ? <CheckIcon className="h-4 w-4" /> : <CopyIcon className="h-4 w-4" />}
         </Button>

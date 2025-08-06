@@ -14,9 +14,9 @@ export function TemplatesUiGridItem({ template }: { template: RepokitTemplate })
       </div>
       <div className="p-4 space-y-2">
         <h3 className="text-lg font-bold">{template.name}</h3>
-        <p className="text-sm text-gray-500 dark:text-gray-400">{template.description}</p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">{template.description}</p>
         <div className="flex justify-between items-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400">by {template.source.name}</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">by {template.source.name}</p>
           <button
             onClick={(e) => {
               e.preventDefault()

@@ -48,7 +48,7 @@ export function TemplatesUiLayoutDetail({ name, source }: { name: string; source
             </div>
           </div>
           <div>
-            <div className="prose dark:prose-invert max-w-none border rounded-lg p-4 bg-gray-50 dark:bg-gray-900">
+            <div className="prose dark:prose-invert max-w-none border rounded-lg p-4 bg-neutral-50 dark:bg-neutral-900">
               <div dangerouslySetInnerHTML={{ __html: template.readme }} />
             </div>
           </div>
