@@ -11,12 +11,4 @@ export const sources: RepokitSource[] = [
     owner: 'solana-foundation',
     repo: 'templates',
   },
-  {
-    id: 'solana-mobile',
-    name: 'Solana Mobile',
-    source: 'gh:solana-developers/solana-mobile-templates',
-    provider: 'gh',
-    owner: 'solana-developers',
-    repo: 'solana-mobile-templates',
-  },
 ]

@@ -8,14 +8,14 @@ import solanaTemplateNodeScript from './images/solana-template-node-script.png'
 import solanaTemplateReactViteTailwind from './images/solana-template-react-vite-tailwind.png'
 import solanaTemplateReactViteTailwindBasic from './images/solana-template-react-vite-tailwind-basic.png'
 import solanaTemplateReactViteTailwindCounter from './images/solana-template-react-vite-tailwind-counter.png'
+import solanaWeb3jsExpo from './images/solana-web3js-expo.png'
+import solanaWeb3jsExpoPaper from './images/solana-web3js-expo-paper.png'
 import solanaLegacyNextTailwind from './images/solana-legacy-next-tailwind.png'
 import solanaLegacyNextTailwindBasic from './images/solana-legacy-next-tailwind-basic.png'
 import solanaLegacyNextTailwindCounter from './images/solana-legacy-next-tailwind-counter.png'
 import solanaLegacyReactViteTailwind from './images/solana-legacy-react-vite-tailwind.png'
 import solanaLegacyReactViteTailwindBasic from './images/solana-legacy-react-vite-tailwind-basic.png'
 import solanaLegacyReactViteTailwindCounter from './images/solana-legacy-react-vite-tailwind-counter.png'
-import solanaMobileWeb3jsExpo from './images/solana-mobile-web3js-expo.png'
-import solanaMobileWeb3jsExpoPaper from './images/solana-mobile-web3js-expo-paper.png'
 
 export const images: Record<string, StaticImageData> = {
   'solana-template-next-tailwind': solanaTemplateNextTailwind,
@@ -26,12 +26,12 @@ export const images: Record<string, StaticImageData> = {
   'solana-template-react-vite-tailwind': solanaTemplateReactViteTailwind,
   'solana-template-react-vite-tailwind-basic': solanaTemplateReactViteTailwindBasic,
   'solana-template-react-vite-tailwind-counter': solanaTemplateReactViteTailwindCounter,
+  'solana-web3js-expo': solanaWeb3jsExpo,
+  'solana-web3js-expo-paper': solanaWeb3jsExpoPaper,
   'solana-legacy-next-tailwind': solanaLegacyNextTailwind,
   'solana-legacy-next-tailwind-basic': solanaLegacyNextTailwindBasic,
   'solana-legacy-next-tailwind-counter': solanaLegacyNextTailwindCounter,
   'solana-legacy-react-vite-tailwind': solanaLegacyReactViteTailwind,
   'solana-legacy-react-vite-tailwind-basic': solanaLegacyReactViteTailwindBasic,
   'solana-legacy-react-vite-tailwind-counter': solanaLegacyReactViteTailwindCounter,
-  'solana-mobile-web3js-expo': solanaMobileWeb3jsExpo,
-  'solana-mobile-web3js-expo-paper': solanaMobileWeb3jsExpoPaper,
 }

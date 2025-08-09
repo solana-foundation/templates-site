@@ -27,29 +27,11 @@ export const filters: RepokitFilter[] = [
         name: 'React Native',
       },
       {
-        id: 'express',
-        name: 'Express',
-      },
-      {
         id: 'node',
         name: 'Node',
       },
     ],
     name: 'Frameworks',
-  },
-  {
-    id: 'styling',
-    keywords: [
-      {
-        id: 'tailwind',
-        name: 'Tailwind',
-      },
-      {
-        id: 'react-native-paper',
-        name: 'React Native Paper',
-      },
-    ],
-    name: 'Styling',
   },
   {
     id: 'solana-sdks',
