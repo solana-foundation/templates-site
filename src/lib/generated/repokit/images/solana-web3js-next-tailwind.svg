@@ -16,7 +16,7 @@
         fill="url(#titleGradient)"
         text-anchor="middle"
       >
-        template-react-vite-tailwind-counter
+        web3js-next-tailwind
       </text>
       <text
         y="580"
@@ -25,7 +25,7 @@
         fill="#ffffff"
         text-anchor="middle"
       >
-        <tspan x="1200" dy="1.2em">React+Vite, Tailwind, gill (based on</tspan><tspan x="1200" dy="1.2em">@solana/kit), Anchor Counter example,</tspan><tspan x="1200" dy="1.2em">Wallet UI</tspan>
+        <tspan x="1200" dy="1.2em">Next.js, Tailwind, @solana/web3.js,</tspan><tspan x="1200" dy="1.2em">Wallet Adapter</tspan>
       </text>
       <text
         x="1200"
@@ -35,7 +35,7 @@
         fill="#888888"
         text-anchor="middle"
       >
-        anchor-counter  ·  gill  ·  react  ·  solana-kit  ·  tailwind  ·  typescript  ·  vite  ·  wallet-ui
+        nextjs  ·  react  ·  solana-web3js  ·  tailwind  ·  typescript  ·  wallet-adapter
       </text>
     </svg>
   

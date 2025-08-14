@@ -5,11 +5,6 @@
       "id": "solana",
       "name": "Solana",
       "source": "gh:solana-foundation/templates"
-    },
-    {
-      "id": "solana-mobile",
-      "name": "Solana Mobile",
-      "source": "gh:solana-developers/solana-mobile-templates"
     }
   ],
   "filters": [

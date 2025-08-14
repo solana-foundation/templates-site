@@ -16,7 +16,7 @@
         fill="url(#titleGradient)"
         text-anchor="middle"
       >
-        legacy-react-vite-tailwind
+        web3js-react-vite-tailwind
       </text>
       <text
         y="580"
@@ -35,7 +35,7 @@
         fill="#888888"
         text-anchor="middle"
       >
-        legacy  ·  react  ·  solana-web3js  ·  tailwind  ·  typescript  ·  vite  ·  wallet-adapter
+        react  ·  solana-web3js  ·  tailwind  ·  typescript  ·  vite  ·  wallet-adapter
       </text>
     </svg>
   
