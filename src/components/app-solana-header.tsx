@@ -8,7 +8,7 @@ export interface AppSolanaHeaderLink {
 
 export function AppSolanaHeader({ links }: { links: AppSolanaHeaderLink[] }) {
   return (
-    <header className="w-full max-w-3xl rounded-full px-6 py-3 mx-auto mt-3 bg-neutral-900 border border-neutral-700">
+    <header className="w-full max-w-3xl rounded-full px-6 py-3 mx-auto mt-5 bg-neutral-900 border border-neutral-700">
       <div className="max-w-[1200] container mx-auto py-md px-6">
         <div className="flex justify-between">
           <a href="https://solana.com" rel="noopener noreferrer">
