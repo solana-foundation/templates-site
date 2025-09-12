@@ -6,7 +6,7 @@ export function TemplatesUiGridItem({ template }: { template: RepokitTemplate })
   return (
     <Link
       href={`/developers/templates/${template.source.id}/${template.name}`}
-      className="border rounded-lg overflow-hidden"
+      className="border rounded-3xl overflow-hidden"
       passHref
     >
       <div className="flex items-center justify-center">

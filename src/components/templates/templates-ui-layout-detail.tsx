@@ -24,7 +24,7 @@ export function TemplatesUiLayoutDetail({ name, source }: { name: string; source
   return (
     <div className="grid md:grid-cols-4 gap-4 lg:gap-8">
       <div className="md:col-span-1">
-        <div className="hidden md:block">
+        <div className="hidden md:block md:sticky md:top-4 md:self-start">
           <TemplatesUiSidebarDetail template={template} />
         </div>
         <div className="md:hidden">

@@ -6,14 +6,15 @@ export function TemplatesUiFilterKeywords() {
   return filters.map((filter) => (
     <div className="flex flex-col gap-2" key={filter.id}>
       <div className={'text-md font-bold py-1.5'}>{filter.name}</div>
-      <div className="flex flex-col gap-2">
+      <div className="flex gap-2 flex-wrap">
         {filter.keywords.map((keyword) => (
           <Button
             onClick={() => toggleKeyword(keyword.id)}
+            className={`rounded-full solana-border w-fit p-0 h-fit cursor-pointer ${selectedKeywords.includes(keyword.id) ? 'selected opacity-100' : 'opacity-50 hover:opacity-100'}`}
             variant={selectedKeywords.includes(keyword.id) ? 'default' : 'outline'}
             key={keyword.id}
           >
-            {keyword.name}
+            <span className='bg-neutral-900 rounded-full px-4 py-1 text-white'>{keyword.name}</span>
           </Button>
         ))}
       </div>

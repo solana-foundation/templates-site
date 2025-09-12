@@ -148,6 +148,57 @@
   animation: metallic-shimmer 8s linear infinite;
 }
 
+.solana-border {
+  --stroke: 1px;
+  --bg-color: transparent;
+  --rotation: 0deg;
+  border-radius: 9999px;
+  border: var(--stroke) solid transparent;
+
+  background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+    conic-gradient(
+      from var(--rotation) at 50% 50%,
+      #6b6b6b 0%,
+      #7a7a7a 20%,
+      #6f6f6f 40%,
+      #787878 60%,
+      #737373 80%,
+      #6b6b6b 100%
+    )
+    border-box;
+}
+
+.solana-border:hover {
+  animation: solana-shimmer 6s linear infinite;
+  background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+    conic-gradient(
+      from var(--rotation) at 50% 50%,
+      #9945ff 0%,
+      #14f195 20%,
+      #00d4ff 40%,
+      #ff6b9d 60%,
+      #c471ed 80%,
+      #9945ff 100%
+    )
+    border-box;
+}
+
+.solana-border.selected {
+  opacity: 1 !important;
+  animation: solana-shimmer 6s linear infinite;
+  background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+    conic-gradient(
+      from var(--rotation) at 50% 50%,
+      #9945ff 0%,
+      #14f195 20%,
+      #00d4ff 40%,
+      #ff6b9d 60%,
+      #c471ed 80%,
+      #9945ff 100%
+    )
+    border-box;
+}
+
 @keyframes metallic-shimmer {
   0% {
     --rotation: 0deg;
@@ -157,7 +208,15 @@
   }
 }
 
-/* Custom Scrollbar Styles */
+@keyframes solana-shimmer {
+  0% {
+    --rotation: 0deg;
+  }
+  100% {
+    --rotation: 360deg;
+  }
+}
+
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgba(115, 115, 115, 0.5) transparent;
