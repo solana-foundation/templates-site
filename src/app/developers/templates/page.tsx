@@ -5,7 +5,10 @@ import { TemplatesUiLayoutList } from '@/components/templates/templates-ui-layou
 export default function Home() {
   return (
     <Suspense>
-      <AppHero title="Templates" subtitle="Jumpstart your app development process with these pre-built solutions." />
+      <AppHero 
+        title="Solana Developer Templates" 
+        subtitle="Build faster with production-ready templates for dApps, DeFi protocols, NFT marketplaces, and more. Get started with battle-tested code patterns optimized for the Solana ecosystem." 
+      />
       <TemplatesUiLayoutList />
     </Suspense>
   )

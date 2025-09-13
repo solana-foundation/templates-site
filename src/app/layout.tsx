@@ -16,9 +16,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body>
-        <AppProviders>
-          <AppSolanaLayout>{children}</AppSolanaLayout>
-        </AppProviders>
+        <div className="min-h-screen bg-gradient-to-br from-purple-500/5 via-background via-50% to-emerald-400/8">
+          <div className="absolute inset-0 bg-gradient-to-t from-transparent via-cyan-400/3 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-bl from-pink-400/3 via-transparent to-transparent"></div>
+          <div className="relative z-10">
+            <AppProviders>
+              <AppSolanaLayout>{children}</AppSolanaLayout>
+            </AppProviders>
+          </div>
+        </div>
       </body>
     </html>
   )
