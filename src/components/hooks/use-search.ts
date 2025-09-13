@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect, useTransition } from 'react'
 import { useRepokitUrlState } from '@/lib/repokit/use-repokit-url-state'
 import { RepokitTemplate } from '@/lib/generated/repokit'
-import { sanitizeSearchInput, createFeaturedTemplates, filterTemplates } from '../utils'
+import { sanitizeSearchInput, createFeaturedTemplates, filterTemplates } from '../search/utils'
 
 export interface UseSearchReturn {
   query: string
