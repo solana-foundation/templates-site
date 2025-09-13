@@ -1,6 +1,6 @@
 'use client'
 
-import type React from 'react'
+import React from 'react'
 
 import type { TemplateRecord } from '@/types'
 import { useMemo } from 'react'
@@ -9,9 +9,10 @@ import Link from 'next/link'
 interface SearchCardProps {
   template: TemplateRecord
   isActive?: boolean
+  onCardClick?: () => void
+  id?: string
 }
 
-// Tech logo configuration
 const TECH_LOGOS = {
   next: { src: '/next-logo.svg', alt: 'Next.js logo' },
   vite: { src: '/vite.svg', alt: 'Vite logo' },
@@ -21,12 +22,11 @@ const TECH_LOGOS = {
   other: { src: '/javascript.svg', alt: 'JavaScript logo' },
 } as const
 
-export function SearchCard({ template, isActive = false }: SearchCardProps) {
-  const { name, description, tech, href, logoUrl } = template
+export const SearchCard = React.memo<SearchCardProps>(({ template, isActive = false, onCardClick, id }) => {
+  const { name, description, tech } = template
 
   const randomRotation = useMemo(() => Math.floor(Math.random() * 360), [template.id])
 
-  // Fallback logo component
   const PlaceholderLogo = () => (
     <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -36,10 +36,6 @@ export function SearchCard({ template, isActive = false }: SearchCardProps) {
   )
 
   const renderLogo = () => {
-    if (logoUrl) {
-      return <img src={logoUrl || '/placeholder.svg'} alt={`${name} logo`} className="w-6 h-6" />
-    }
-
     const logoConfig = TECH_LOGOS[tech]
     if (logoConfig) {
       return <img src={logoConfig.src} alt={logoConfig.alt} className="w-6 h-6" />
@@ -48,16 +44,22 @@ export function SearchCard({ template, isActive = false }: SearchCardProps) {
     return <PlaceholderLogo />
   }
 
-  const internalHref = `/developers/templates/${template.source.id}/${template.name}`
+  const templateUrl = `/developers/templates/${template.source.id}/${template.name}`
 
   return (
     <Link
-      href={internalHref}
+      href={templateUrl}
       role="option"
       aria-selected={isActive}
+      onClick={onCardClick}
+      id={id}
       className={`
-        block p-4 rounded-xl metallic-border transition duration-200 ease-in-out opacity-55 hover:opacity-100
-        ${isActive ? 'bg-neutral-800' : 'bg-neutral-900 hover:bg-neutral-800'}
+        block p-4 rounded-xl metallic-border transition duration-200 ease-in-out
+        ${
+          isActive
+            ? 'bg-neutral-700 opacity-100 ring-2 ring-neutral-500'
+            : 'bg-neutral-900 opacity-55 hover:opacity-100 hover:bg-neutral-800'
+        }
         focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2 focus:ring-offset-neutral-900
       `}
       style={{ '--rotation': `${randomRotation}deg` } as React.CSSProperties}
@@ -72,4 +74,4 @@ export function SearchCard({ template, isActive = false }: SearchCardProps) {
       </div>
     </Link>
   )
-}
+})
