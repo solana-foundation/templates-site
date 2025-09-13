@@ -5,6 +5,7 @@ import React from 'react'
 import type { TemplateRecord } from '@/types'
 import { useMemo } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface SearchCardProps {
   template: TemplateRecord
@@ -25,7 +26,7 @@ const TECH_LOGOS = {
 export const SearchCard = React.memo<SearchCardProps>(({ template, isActive = false, onCardClick, id }) => {
   const { name, description, tech } = template
 
-  const randomRotation = useMemo(() => Math.floor(Math.random() * 360), [template.id])
+  const randomRotation = useMemo(() => Math.floor(Math.random() * 360), [])
 
   const PlaceholderLogo = () => (
     <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -38,7 +39,7 @@ export const SearchCard = React.memo<SearchCardProps>(({ template, isActive = fa
   const renderLogo = () => {
     const logoConfig = TECH_LOGOS[tech]
     if (logoConfig) {
-      return <img src={logoConfig.src} alt={logoConfig.alt} className="w-6 h-6" />
+      return <Image src={logoConfig.src} alt={logoConfig.alt} width={24} height={24} className="w-6 h-6" />
     }
 
     return <PlaceholderLogo />
@@ -75,3 +76,5 @@ export const SearchCard = React.memo<SearchCardProps>(({ template, isActive = fa
     </Link>
   )
 })
+
+SearchCard.displayName = 'SearchCard'

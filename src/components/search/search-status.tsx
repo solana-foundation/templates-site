@@ -26,3 +26,5 @@ export const SearchStatus = React.memo<SearchStatusProps>(({ isPending, showEmpt
     </>
   )
 })
+
+SearchStatus.displayName = 'SearchStatus'

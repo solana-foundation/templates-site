@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react'
-import { AppSolanaHeader, AppSolanaHeaderLink } from './header'
+import { AppSolanaHeader, HeaderNavigationLink } from './header'
 import { AppSolanaFooter } from './app-solana-footer'
 
-const links: AppSolanaHeaderLink[] = [
+const links: HeaderNavigationLink[] = [
   { label: 'Documentation', href: 'https://solana.com/docs' },
   { label: 'Cookbook', href: 'https://solana.com/developers/cookbook' },
 ]

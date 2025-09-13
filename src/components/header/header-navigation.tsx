@@ -33,3 +33,5 @@ export const HeaderNavigation = React.memo<HeaderNavigationProps>(({
     </div>
   )
 })
+
+HeaderNavigation.displayName = 'HeaderNavigation'

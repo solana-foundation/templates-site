@@ -52,3 +52,5 @@ export const SearchInput = React.memo<SearchInputProps>(
     )
   },
 )
+
+SearchInput.displayName = 'SearchInput'

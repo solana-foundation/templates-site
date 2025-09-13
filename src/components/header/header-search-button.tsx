@@ -32,3 +32,5 @@ export const HeaderSearchButton = React.memo<HeaderSearchButtonProps>(({
     </button>
   )
 })
+
+HeaderSearchButton.displayName = 'HeaderSearchButton'

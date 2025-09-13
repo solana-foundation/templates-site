@@ -27,3 +27,5 @@ export const HeaderLogo = React.memo<HeaderLogoProps>(({
     </a>
   )
 })
+
+HeaderLogo.displayName = 'HeaderLogo'
