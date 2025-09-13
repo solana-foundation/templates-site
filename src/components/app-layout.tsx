@@ -1,6 +1,6 @@
 'use client'
 
-import { AppHeader } from '@/components/app-header'
+import { AppHeader } from '@/components/header'
 import React from 'react'
 import { AppFooter } from '@/components/app-footer'
 

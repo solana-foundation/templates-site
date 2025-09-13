@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { AppSolanaHeader, AppSolanaHeaderLink } from './app-solana-header'
+import { AppSolanaHeader, AppSolanaHeaderLink } from './header'
 import { AppSolanaFooter } from './app-solana-footer'
 
 const links: AppSolanaHeaderLink[] = [
