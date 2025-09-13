@@ -14,7 +14,7 @@ export function TemplatesUiFilterKeywords() {
             variant={selectedKeywords.includes(keyword.id) ? 'default' : 'outline'}
             key={keyword.id}
           >
-            <span className='bg-neutral-900 rounded-full px-4 py-1 text-white'>{keyword.name}</span>
+            <span className='bg-slate-900 rounded-full px-4 py-1 text-white'>{keyword.name}</span>
           </Button>
         ))}
       </div>

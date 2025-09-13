@@ -122,7 +122,7 @@
 
 .metallic-border {
   --stroke: 1px;
-  --card-bg: #1f1f1f;
+  --card-bg: #121212;
   --rotation: 0deg;
   border-radius: 16px;
   border: var(--stroke) solid transparent;
@@ -243,6 +243,12 @@
 
 .custom-scrollbar::-webkit-scrollbar-thumb:active {
   background: rgba(115, 115, 115, 0.9);
+}
+
+@layer utilities {
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
+  }
 }
 
 @layer base {

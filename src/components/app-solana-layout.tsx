@@ -11,7 +11,7 @@ const links: AppSolanaHeaderLink[] = [
 
 export function AppSolanaLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="relative flex flex-col min-h-screen">
       <AppSolanaHeader links={links} />
       <main className="flex-grow container mx-auto p-4">{children}</main>
       <AppSolanaFooter />
