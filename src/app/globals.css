@@ -174,10 +174,8 @@
     conic-gradient(
       from var(--rotation) at 50% 50%,
       #9945ff 0%,
-      #14f195 20%,
-      #00d4ff 40%,
-      #ff6b9d 60%,
-      #c471ed 80%,
+      #14f195 60%,
+      #00d4ff 80%,
       #9945ff 100%
     )
     border-box;
@@ -190,10 +188,8 @@
     conic-gradient(
       from var(--rotation) at 50% 50%,
       #9945ff 0%,
-      #14f195 20%,
-      #00d4ff 40%,
-      #ff6b9d 60%,
-      #c471ed 80%,
+      #14f195 60%,
+      #00d4ff 80%,
       #9945ff 100%
     )
     border-box;
