@@ -2,19 +2,19 @@ import { RepokitTemplate } from '../generated/repokit'
 import { RepokitUrlState } from './use-repokit-url-state'
 
 export function filterTemplates({
-  search,
+  filter,
   selectedKeywords,
   selectedSources,
   templates,
 }: RepokitUrlState & { templates: RepokitTemplate[] }) {
   return templates
     .filter((l) => {
-      if (search.trim() === '') {
+      if (filter.trim() === '') {
         return true
       }
-      const inName = l.name.toLowerCase().includes(search)
-      const inDescription = l.description.toLowerCase().includes(search)
-      const inKeywords = l.keywords.some((k) => k.toLowerCase().includes(search))
+      const inName = l.name.toLowerCase().includes(filter.toLowerCase())
+      const inDescription = l.description.toLowerCase().includes(filter.toLowerCase())
+      const inKeywords = l.keywords.some((k) => k.toLowerCase().includes(filter.toLowerCase()))
 
       return inName || inDescription || inKeywords
     })
