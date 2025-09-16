@@ -64,7 +64,7 @@ export default async function Image({
     const parts = name.toLowerCase().split('-')
     const sourceName = source.replace('solana-', '').replace('-', ' ')
 
-    let tech = []
+    const tech = []
     let type = 'template'
 
     // Identify technologies
