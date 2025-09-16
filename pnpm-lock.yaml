@@ -72,6 +72,9 @@ importers:
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
+      sharp:
+        specifier: ^0.34.3
+        version: 0.34.3
       tailwindcss:
         specifier: ^4
         version: 4.1.11
