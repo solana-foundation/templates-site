@@ -122,25 +122,37 @@ export default async function Image() {
           <div
             style={{
               display: 'flex',
-              gap: '24px',
-              marginTop: '24px',
+              alignItems: 'center',
+              gap: '12px',
+              marginTop: '32px',
+              padding: '16px 24px',
+              background: 'rgba(255, 255, 255, 0.05)',
+              borderRadius: '8px',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
             }}
           >
-            <div
+            <span
               style={{
-                background: 'linear-gradient(135deg, #14F195 0%, #9945FF 100%)',
-                padding: '14px 28px',
-                borderRadius: '12px',
-                fontSize: '22px',
-                fontWeight: '600',
-                fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-                letterSpacing: '-0.01em',
-                color: 'white',
-                boxShadow: '0 4px 12px rgba(20, 241, 149, 0.3)',
+                fontSize: '24px',
+                fontWeight: '500',
+                fontFamily: 'monospace',
+                color: 'rgba(20, 241, 149, 0.8)',
+                letterSpacing: '0',
               }}
             >
-              create-solana-dapp
-            </div>
+              $
+            </span>
+            <span
+              style={{
+                fontSize: '24px',
+                fontWeight: '500',
+                fontFamily: 'monospace',
+                color: 'rgba(255, 255, 255, 0.9)',
+                letterSpacing: '-0.01em',
+              }}
+            >
+              npx create-solana-dapp
+            </span>
           </div>
         </div>
       </div>

@@ -1,6 +1,4 @@
 import { ImageResponse } from '@vercel/og'
-import { templates } from '@/lib/generated/repokit'
-import { images } from '@/lib/generated/repokit/images'
 
 export const runtime = 'edge'
 export const alt = 'Solana Template'
@@ -17,35 +15,127 @@ export default async function Image({
 }) {
   const { name, source } = await params
 
-  // Find the template
-  const template = templates.find(
-    (t) => t.id === name && t.source.id === source
-  )
+  // Parse the template name to create a display-friendly version
+  const formatTemplateName = (name: string) => {
+    // Remove source prefix if it exists
+    let cleanName = name
+    if (name.startsWith('solana-')) {
+      cleanName = name.replace('solana-', '')
+    }
 
-  if (!template) {
-    // Fallback for unknown templates
-    return new ImageResponse(
-      (
-        <div
-          style={{
-            background: '#0a0a0a',
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ color: 'white', fontSize: '48px', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>Template Not Found</div>
-        </div>
-      ),
-      { ...size }
-    )
+    // Split by hyphen and format each part
+    const parts = cleanName.split('-')
+    const formattedParts = parts.map(part => {
+      // Special cases for common tech terms
+      const techTerms: Record<string, string> = {
+        'ui': 'UI',
+        'api': 'API',
+        'sdk': 'SDK',
+        'nft': 'NFT',
+        'defi': 'DeFi',
+        'dao': 'DAO',
+        'cli': 'CLI',
+        'nextjs': 'Next.js',
+        'next': 'Next.js',
+        'tailwind': 'Tailwind',
+        'typescript': 'TypeScript',
+        'javascript': 'JavaScript',
+        'react': 'React',
+        'vite': 'Vite',
+        'expo': 'Expo',
+        'nodejs': 'Node.js',
+        'node': 'Node',
+        'express': 'Express',
+        'web3js': 'Web3.js',
+        'gill': 'Gill',
+        'mobile': 'Mobile',
+        'dapp': 'dApp',
+        'spl': 'SPL',
+      }
+
+      return techTerms[part.toLowerCase()] || part
+    })
+
+    return formattedParts.join('-')
   }
 
-  // Get the template image if available
-  const templateImageKey = Object.keys(images).find(key => key === template.id)
-  const templateImage = templateImageKey ? images[templateImageKey as keyof typeof images] : null
+  // Generate a description based on the name
+  const generateDescription = (name: string, source: string) => {
+    const parts = name.toLowerCase().split('-')
+    const sourceName = source.replace('solana-', '').replace('-', ' ')
+
+    let tech = []
+    let type = 'template'
+
+    // Identify technologies
+    if (parts.includes('next') || parts.includes('nextjs')) tech.push('Next.js')
+    if (parts.includes('react')) tech.push('React')
+    if (parts.includes('vite')) tech.push('Vite')
+    if (parts.includes('tailwind')) tech.push('Tailwind CSS')
+    if (parts.includes('typescript')) tech.push('TypeScript')
+    if (parts.includes('expo')) tech.push('Expo')
+    if (parts.includes('express')) tech.push('Express')
+    if (parts.includes('node') || parts.includes('nodejs')) tech.push('Node.js')
+    if (parts.includes('web3js')) tech.push('Web3.js')
+    if (parts.includes('gill')) tech.push('Gill (based on @solana/kit)')
+
+    // Identify template type
+    if (parts.includes('mobile')) type = 'mobile template'
+    if (parts.includes('basic')) type = 'starter template'
+    if (parts.includes('counter')) type = 'counter app template'
+    if (parts.includes('wallet')) type = 'wallet integration template'
+
+    // Build description
+    if (tech.length > 0) {
+      return `${tech.join(', ')} ${type} with Wallet UI integration`
+    }
+
+    return `Solana development ${type} from ${sourceName}`
+  }
+
+  // Generate keywords based on the name
+  const generateKeywords = (name: string) => {
+    const parts = name.toLowerCase().split('-')
+    const keywords = new Set<string>()
+
+    // Add base keywords
+    keywords.add('solana')
+
+    // Map parts to keywords
+    const keywordMap: Record<string, string[]> = {
+      'next': ['nextjs', 'react'],
+      'nextjs': ['nextjs', 'react'],
+      'react': ['react'],
+      'vite': ['vite', 'build-tool'],
+      'tailwind': ['tailwind', 'css'],
+      'typescript': ['typescript'],
+      'javascript': ['javascript'],
+      'expo': ['expo', 'mobile', 'react-native'],
+      'mobile': ['mobile', 'react-native'],
+      'express': ['express', 'nodejs', 'api'],
+      'node': ['nodejs'],
+      'nodejs': ['nodejs'],
+      'web3js': ['web3js', 'blockchain'],
+      'gill': ['gill', 'solana-kit'],
+      'wallet': ['wallet', 'wallet-ui'],
+      'basic': ['starter', 'template'],
+      'counter': ['dapp', 'example'],
+    }
+
+    parts.forEach(part => {
+      if (keywordMap[part]) {
+        keywordMap[part].forEach(k => keywords.add(k))
+      } else if (part !== 'solana') {
+        keywords.add(part)
+      }
+    })
+
+    return Array.from(keywords)
+  }
+
+  const displayName = formatTemplateName(name)
+  const description = generateDescription(name, source)
+  const keywords = generateKeywords(name)
 
   return new ImageResponse(
     (
@@ -55,209 +145,102 @@ export default async function Image({
           width: '100%',
           height: '100%',
           display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
           position: 'relative',
-          overflow: 'hidden',
+          padding: '60px',
         }}
       >
-        {/* Gradient shapes in top left */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '-100px',
-            left: '-100px',
-            width: '400px',
-            height: '400px',
-            background: 'linear-gradient(135deg, #14F195 0%, transparent 70%)',
-            borderRadius: '50%',
-            opacity: 0.3,
-            filter: 'blur(80px)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: '50px',
-            left: '50px',
-            width: '200px',
-            height: '200px',
-            background: '#9945FF',
-            borderRadius: '50%',
-            opacity: 0.2,
-            filter: 'blur(60px)',
-          }}
-        />
-
-        {/* Additional gradient overlay */}
+        {/* Subtle gradient overlays for depth */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(circle at 20% 50%, rgba(20, 241, 149, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(153, 69, 255, 0.1) 0%, transparent 50%)',
+            background: 'radial-gradient(circle at 30% 30%, rgba(20, 241, 149, 0.08) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(153, 69, 255, 0.08) 0%, transparent 50%)',
           }}
         />
 
-        {/* Left side - Template info */}
+        {/* Main content container */}
         <div
           style={{
-            flex: 1,
             display: 'flex',
             flexDirection: 'column',
+            alignItems: 'center',
             justifyContent: 'center',
-            padding: '60px',
-            gap: '24px',
-            zIndex: 10,
+            gap: '40px',
+            maxWidth: '1000px',
+            width: '100%',
+            textAlign: 'center',
           }}
         >
-          {/* Source badge */}
-          <div
+          {/* Template name with gradient */}
+          <h1
             style={{
-              background: 'linear-gradient(135deg, #14F195 0%, #9945FF 100%)',
-              color: 'white',
-              padding: '8px 16px',
-              borderRadius: '8px',
-              fontSize: '16px',
-              fontWeight: '600',
-              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-              letterSpacing: '-0.01em',
-              alignSelf: 'flex-start',
+              fontSize: '72px',
+              fontWeight: '700',
+              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              letterSpacing: '-0.03em',
+              lineHeight: 1,
+              margin: 0,
+              padding: '20px 0',
+              backgroundImage: 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+              display: 'flex',
             }}
           >
-            {template.source.name}
-          </div>
-
-          {/* Template name */}
-          <div
-            style={{
-              fontSize: '52px',
-              fontWeight: '600',
-              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-              color: 'white',
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-            }}
-          >
-            {template.name}
-          </div>
+            {displayName}
+          </h1>
 
           {/* Description */}
-          <div
+          <p
             style={{
-              fontSize: '22px',
+              fontSize: '28px',
               fontWeight: '400',
-              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-              color: 'rgba(255, 255, 255, 0.85)',
-              lineHeight: 1.5,
+              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              color: 'rgba(255, 255, 255, 0.9)',
+              lineHeight: 1.4,
+              margin: 0,
+              maxWidth: '800px',
               letterSpacing: '-0.01em',
             }}
           >
-            {template.description}
-          </div>
+            {description}
+          </p>
 
           {/* Keywords */}
           <div
             style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '12px',
-              marginTop: '12px',
+              gap: '8px',
+              justifyContent: 'center',
+              marginTop: '20px',
+              fontSize: '20px',
+              fontWeight: '400',
+              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              color: 'rgba(255, 255, 255, 0.7)',
             }}
           >
-            {template.keywords.slice(0, 5).map((keyword, i) => (
-              <div
+            {keywords.slice(0, 8).map((keyword, i) => (
+              <span
                 key={i}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  color: 'white',
-                  padding: '6px 12px',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  letterSpacing: '-0.01em',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
                 {keyword}
-              </div>
+                {i < Math.min(keywords.length - 1, 7) && (
+                  <span style={{ margin: '0 8px', opacity: 0.3 }}>•</span>
+                )}
+              </span>
             ))}
           </div>
-
-          {/* Solana branding */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              marginTop: '24px',
-            }}
-          >
-            <svg width="40" height="40" viewBox="0 0 240 240" fill="none">
-              <circle cx="120" cy="120" r="80" stroke="#14F195" strokeWidth="8" fill="none"/>
-              <path d="M160 80L80 160" stroke="#14F195" strokeWidth="8" strokeLinecap="round"/>
-              <path d="M80 80L160 160" stroke="#14F195" strokeWidth="8" strokeLinecap="round"/>
-            </svg>
-            <div
-              style={{
-                fontSize: '18px',
-                color: '#14F195',
-                fontWeight: '600',
-                fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-                letterSpacing: '-0.01em',
-              }}
-            >
-              Powered by Solana
-            </div>
-          </div>
         </div>
 
-        {/* Right side - Template preview or gradient */}
-        <div
-          style={{
-            width: '480px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: templateImage ? 'transparent' : 'linear-gradient(135deg, rgba(20, 241, 149, 0.2) 0%, rgba(153, 69, 255, 0.2) 100%)',
-            borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-          }}
-        >
-          {templateImage ? (
-            <img
-              src={templateImage.src}
-              alt={`${template.name} preview`}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                opacity: 0.8,
-              }}
-            />
-          ) : (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '20px',
-              }}
-            >
-              <svg width="120" height="120" viewBox="0 0 240 240" fill="none">
-                <rect x="60" y="60" width="120" height="120" stroke="white" strokeWidth="4" fill="none" opacity="0.3"/>
-                <circle cx="120" cy="120" r="40" stroke="white" strokeWidth="4" fill="none" opacity="0.3"/>
-                <path d="M120 80V160M80 120H160" stroke="white" strokeWidth="4" opacity="0.3"/>
-              </svg>
-              <div
-                style={{
-                  color: 'rgba(255, 255, 255, 0.5)',
-                  fontSize: '18px',
-                  textAlign: 'center',
-                }}
-              >
-                Template Preview
-              </div>
-            </div>
-          )}
-        </div>
       </div>
     ),
     {
