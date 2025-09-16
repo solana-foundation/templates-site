@@ -27,13 +27,11 @@ export const metadata: Metadata = {
     title: 'Solana Templates',
     description: 'Templates for create-solana-dapp',
     type: 'website',
-    images: ['/icons/icon-512x512.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Solana Templates',
     description: 'Templates for create-solana-dapp',
-    images: ['/icons/icon-512x512.png'],
   },
 }
 
