@@ -151,7 +151,7 @@ export default async function Image() {
                 letterSpacing: '-0.01em',
               }}
             >
-              npx create-solana-dapp
+              npx create-solana-dapp@latest
             </span>
           </div>
         </div>
