@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { CheckIcon, CopyIcon } from 'lucide-react'
 
-const pms = ['bun', 'npm', 'pnpm', 'yarn']
+const pms = ['npm', 'pnpm', 'yarn', 'bun']
 
 function getCommand(pm: string, template: string) {
   switch (pm) {
@@ -21,7 +21,7 @@ function getCommand(pm: string, template: string) {
 }
 
 export function TemplatesUiGenerateCommand({ template: { source, path } }: { template: RepokitTemplate }) {
-  const [selected, setSelected] = useState('pnpm')
+  const [selected, setSelected] = useState('npm')
   const [isCopied, setIsCopied] = useState(false)
   const template = `${source.owner}/${source.repo}/${path}`
   const command = getCommand(selected, template)

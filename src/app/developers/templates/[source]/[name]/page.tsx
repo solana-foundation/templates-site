@@ -10,7 +10,7 @@ export async function generateMetadata({
   const { name, source } = await params
 
   const template = templates.find(
-    (t) => t.id === name && t.source.id === source
+    (t) => t.name === name && t.source.id === source
   )
 
   if (!template) {
