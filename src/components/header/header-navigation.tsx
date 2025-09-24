@@ -11,27 +11,24 @@ export interface HeaderNavigationProps {
   linkClassName?: string
 }
 
-export const HeaderNavigation = React.memo<HeaderNavigationProps>(({
-  links,
-  className = "flex items-center gap-2 md:gap-4",
-  linkClassName = "text-neutral-500 transition duration-200 ease-in-out hover:text-neutral-400"
-}) => {
-  if (links.length === 0) return null
+export const HeaderNavigation = React.memo<HeaderNavigationProps>(
+  ({
+    links,
+    className = 'flex items-center gap-2 md:gap-4',
+    linkClassName = 'text-neutral-500 transition duration-200 ease-in-out hover:text-neutral-400',
+  }) => {
+    if (links.length === 0) return null
 
-  return (
-    <div className={className}>
-      {links.map((link) => (
-        <a
-          href={link.href}
-          key={link.label}
-          className={linkClassName}
-          rel="noopener noreferrer"
-        >
-          {link.label}
-        </a>
-      ))}
-    </div>
-  )
-})
+    return (
+      <div className={className}>
+        {links.map((link) => (
+          <a href={link.href} key={link.label} className={linkClassName} rel="noopener noreferrer">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    )
+  },
+)
 
 HeaderNavigation.displayName = 'HeaderNavigation'

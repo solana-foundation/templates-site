@@ -9,23 +9,14 @@ export interface HeaderLogoProps {
   className?: string
 }
 
-export const HeaderLogo = React.memo<HeaderLogoProps>(({
-  href = 'https://solana.com',
-  width = 149,
-  height = 22,
-  className = 'text-white'
-}) => {
-  return (
-    <a href={href} rel="noopener noreferrer">
-      <Image 
-        src={SolanaLogo} 
-        alt="Solana Logo" 
-        width={width} 
-        height={height} 
-        className={className} 
-      />
-    </a>
-  )
-})
+export const HeaderLogo = React.memo<HeaderLogoProps>(
+  ({ href = 'https://solana.com', width = 149, height = 22, className = 'text-white' }) => {
+    return (
+      <a href={href} rel="noopener noreferrer">
+        <Image src={SolanaLogo} alt="Solana Logo" width={width} height={height} className={className} />
+      </a>
+    )
+  },
+)
 
 HeaderLogo.displayName = 'HeaderLogo'

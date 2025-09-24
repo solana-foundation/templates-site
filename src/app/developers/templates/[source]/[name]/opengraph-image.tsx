@@ -8,11 +8,7 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-export default async function Image({
-  params,
-}: {
-  params: Promise<{ name: string; source: string }>
-}) {
+export default async function Image({ params }: { params: Promise<{ name: string; source: string }> }) {
   const { name, source } = await params
 
   // Parse the template name to create a display-friendly version
@@ -25,32 +21,32 @@ export default async function Image({
 
     // Split by hyphen and format each part
     const parts = cleanName.split('-')
-    const formattedParts = parts.map(part => {
+    const formattedParts = parts.map((part) => {
       // Special cases for common tech terms
       const techTerms: Record<string, string> = {
-        'ui': 'UI',
-        'api': 'API',
-        'sdk': 'SDK',
-        'nft': 'NFT',
-        'defi': 'DeFi',
-        'dao': 'DAO',
-        'cli': 'CLI',
-        'nextjs': 'Next.js',
-        'next': 'Next.js',
-        'tailwind': 'Tailwind',
-        'typescript': 'TypeScript',
-        'javascript': 'JavaScript',
-        'react': 'React',
-        'vite': 'Vite',
-        'expo': 'Expo',
-        'nodejs': 'Node.js',
-        'node': 'Node',
-        'express': 'Express',
-        'web3js': 'Web3.js',
-        'gill': 'Gill',
-        'mobile': 'Mobile',
-        'dapp': 'dApp',
-        'spl': 'SPL',
+        ui: 'UI',
+        api: 'API',
+        sdk: 'SDK',
+        nft: 'NFT',
+        defi: 'DeFi',
+        dao: 'DAO',
+        cli: 'CLI',
+        nextjs: 'Next.js',
+        next: 'Next.js',
+        tailwind: 'Tailwind',
+        typescript: 'TypeScript',
+        javascript: 'JavaScript',
+        react: 'React',
+        vite: 'Vite',
+        expo: 'Expo',
+        nodejs: 'Node.js',
+        node: 'Node',
+        express: 'Express',
+        web3js: 'Web3.js',
+        gill: 'Gill',
+        mobile: 'Mobile',
+        dapp: 'dApp',
+        spl: 'SPL',
       }
 
       return techTerms[part.toLowerCase()] || part
@@ -103,28 +99,28 @@ export default async function Image({
 
     // Map parts to keywords
     const keywordMap: Record<string, string[]> = {
-      'next': ['nextjs', 'react'],
-      'nextjs': ['nextjs', 'react'],
-      'react': ['react'],
-      'vite': ['vite', 'build-tool'],
-      'tailwind': ['tailwind', 'css'],
-      'typescript': ['typescript'],
-      'javascript': ['javascript'],
-      'expo': ['expo', 'mobile', 'react-native'],
-      'mobile': ['mobile', 'react-native'],
-      'express': ['express', 'nodejs', 'api'],
-      'node': ['nodejs'],
-      'nodejs': ['nodejs'],
-      'web3js': ['web3js', 'blockchain'],
-      'gill': ['gill', 'solana-kit'],
-      'wallet': ['wallet', 'wallet-ui'],
-      'basic': ['starter', 'template'],
-      'counter': ['dapp', 'example'],
+      next: ['nextjs', 'react'],
+      nextjs: ['nextjs', 'react'],
+      react: ['react'],
+      vite: ['vite', 'build-tool'],
+      tailwind: ['tailwind', 'css'],
+      typescript: ['typescript'],
+      javascript: ['javascript'],
+      expo: ['expo', 'mobile', 'react-native'],
+      mobile: ['mobile', 'react-native'],
+      express: ['express', 'nodejs', 'api'],
+      node: ['nodejs'],
+      nodejs: ['nodejs'],
+      web3js: ['web3js', 'blockchain'],
+      gill: ['gill', 'solana-kit'],
+      wallet: ['wallet', 'wallet-ui'],
+      basic: ['starter', 'template'],
+      counter: ['dapp', 'example'],
     }
 
-    parts.forEach(part => {
+    parts.forEach((part) => {
       if (keywordMap[part]) {
-        keywordMap[part].forEach(k => keywords.add(k))
+        keywordMap[part].forEach((k) => keywords.add(k))
       } else if (part !== 'solana') {
         keywords.add(part)
       }
@@ -157,7 +153,8 @@ export default async function Image({
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(circle at 30% 30%, rgba(20, 241, 149, 0.08) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(153, 69, 255, 0.08) 0%, transparent 50%)',
+            background:
+              'radial-gradient(circle at 30% 30%, rgba(20, 241, 149, 0.08) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(153, 69, 255, 0.08) 0%, transparent 50%)',
           }}
         />
 
@@ -233,18 +230,15 @@ export default async function Image({
                 }}
               >
                 {keyword}
-                {i < Math.min(keywords.length - 1, 7) && (
-                  <span style={{ margin: '0 8px', opacity: 0.3 }}>•</span>
-                )}
+                {i < Math.min(keywords.length - 1, 7) && <span style={{ margin: '0 8px', opacity: 0.3 }}>•</span>}
               </span>
             ))}
           </div>
         </div>
-
       </div>
     ),
     {
       ...size,
-    }
+    },
   )
 }

@@ -28,12 +28,7 @@ export function useKeyboardShortcut({
       const isShiftMatch = shiftKey ? e.shiftKey : !e.shiftKey
       const isAltMatch = altKey ? e.altKey : !e.altKey
 
-      if (
-        e.key === key &&
-        (isMetaMatch || isCtrlMatch) &&
-        isShiftMatch &&
-        isAltMatch
-      ) {
+      if (e.key === key && (isMetaMatch || isCtrlMatch) && isShiftMatch && isAltMatch) {
         e.preventDefault()
         onTrigger()
       }
