@@ -20,7 +20,7 @@ export function useSearchModal(): UseSearchModalReturn {
   }, [])
 
   const toggle = useCallback(() => {
-    setIsOpen(prev => !prev)
+    setIsOpen((prev) => !prev)
   }, [])
 
   useKeyboardShortcut({
