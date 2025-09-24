@@ -5,6 +5,11 @@
       "id": "solana",
       "name": "Solana",
       "source": "gh:solana-foundation/templates"
+    },
+    {
+      "id": "gill-jito-airdrop",
+      "name": "Gill Jito Airdrop",
+      "source": "gh:solana-foundation/templates#main/community/gill-jito-airdrop"
     }
   ],
   "filters": [
