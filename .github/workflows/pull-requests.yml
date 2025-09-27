@@ -1,0 +1,33 @@
+name: Pull requests
+
+on:
+  pull_request:
+
+jobs:
+  lint-format-build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node:
+          - 'current'
+          - 'lts/*'
+
+    name: Lint, Format, Build on Node ${{ matrix.node }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        uses: ./.github/workflows/actions/install-dependencies
+        with:
+          version: ${{ matrix.node }}
+
+      - name: Format check
+        run: pnpm run format:check
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Build
+        run: pnpm run build
