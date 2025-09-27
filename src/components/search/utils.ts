@@ -44,10 +44,7 @@ export const createFeaturedTemplates = (templates: RepokitTemplate[]): RepokitTe
   return featured.slice(0, 3) // Max 3 items
 }
 
-export const filterTemplates = (
-  templates: RepokitTemplate[],
-  query: string
-): RepokitTemplate[] => {
+export const filterTemplates = (templates: RepokitTemplate[], query: string): RepokitTemplate[] => {
   if (!query || query.length < 2) return []
 
   const searchTerm = query.toLowerCase()

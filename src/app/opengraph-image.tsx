@@ -58,7 +58,8 @@ export default async function Image() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(circle at 20% 80%, rgba(20, 241, 149, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(153, 69, 255, 0.15) 0%, transparent 50%)',
+            background:
+              'radial-gradient(circle at 20% 80%, rgba(20, 241, 149, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(153, 69, 255, 0.15) 0%, transparent 50%)',
           }}
         />
 
@@ -159,6 +160,6 @@ export default async function Image() {
     ),
     {
       ...size,
-    }
+    },
   )
 }
