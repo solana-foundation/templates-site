@@ -1,0 +1,33 @@
+name: autofix.ci
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number }}-${{ github.event.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-metadata:
+    runs-on: ubuntu-latest
+    name: Update Metadata
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        uses: ./.github/workflows/actions/install-dependencies
+        with:
+          version: 'current'
+
+      - name: Repokit Publish
+        run: pnpm repokit publish -f
+        shell: bash
+
+      - name: Commit changes
+        uses: autofix-ci/action@635ffb0c9798bd160680f18fd73371e355b85f27 # v1.3.2
+        with:
+          commit-message: 'chore: update metadata'
