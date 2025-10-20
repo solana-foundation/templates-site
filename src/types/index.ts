@@ -32,6 +32,7 @@ export type TemplateRecord = {
   id: string
   name: string
   description: string
+  displayName?: string
 
   source: TemplateSource
 
