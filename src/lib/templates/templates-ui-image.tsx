@@ -1,7 +1,6 @@
 import Image, { ImageProps } from 'next/image'
 import { Template } from '@/lib/types/templates'
-
-const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/GuiBibeau/solana-templates/feat/remove-repokit-dependency'
+import { GITHUB_RAW_BASE } from '@/lib/config/github'
 
 export function TemplatesUiImage({
   template,

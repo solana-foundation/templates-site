@@ -4,9 +4,7 @@
 
 import { Template, TemplateSource } from './types/templates'
 import { markdownToHtml } from './markdown-to-html'
-
-const GITHUB_RAW_URL =
-  'https://raw.githubusercontent.com/GuiBibeau/solana-templates/feat/remove-repokit-dependency/templates.json'
+import { GITHUB_TEMPLATES_JSON, GITHUB_RAW_BASE } from './config/github'
 
 const source: TemplateSource = {
   id: 'solana',
@@ -38,7 +36,7 @@ type TemplatesJsonGroup = {
  */
 export async function fetchTemplatesFromGitHub(): Promise<Template[]> {
   try {
-    const response = await fetch(GITHUB_RAW_URL, {
+    const response = await fetch(GITHUB_TEMPLATES_JSON, {
       next: { revalidate: 60 }, // Cache for 60 seconds
     })
 
@@ -54,7 +52,7 @@ export async function fetchTemplatesFromGitHub(): Promise<Template[]> {
     for (const group of data) {
       for (const template of group.templates) {
         // Fetch readme from GitHub
-        const readmePath = `https://raw.githubusercontent.com/GuiBibeau/solana-templates/feat/remove-repokit-dependency/${template.path}/README.md`
+        const readmePath = `${GITHUB_RAW_BASE}/${template.path}/README.md`
         let readme = ''
 
         try {
