@@ -3,6 +3,7 @@ import { AppProviders } from '@/components/app-providers'
 import './globals.css'
 import { AppSolanaLayout } from '@/components/app-solana-layout'
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration'
+import { TemplatesProviderWrapper } from '@/components/providers/templates-provider-wrapper'
 
 export const metadata: Metadata = {
   title: 'Solana Templates',
@@ -54,7 +55,9 @@ export default function RootLayout({
           <div className="absolute inset-0 bg-gradient-to-bl from-pink-400/3 via-transparent to-transparent"></div>
           <div className="relative z-10">
             <AppProviders>
-              <AppSolanaLayout>{children}</AppSolanaLayout>
+              <TemplatesProviderWrapper>
+                <AppSolanaLayout>{children}</AppSolanaLayout>
+              </TemplatesProviderWrapper>
             </AppProviders>
           </div>
         </div>
