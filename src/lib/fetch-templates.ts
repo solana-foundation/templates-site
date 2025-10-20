@@ -37,7 +37,7 @@ type TemplatesJsonGroup = {
 export async function fetchTemplatesFromGitHub(): Promise<Template[]> {
   try {
     const response = await fetch(GITHUB_TEMPLATES_JSON, {
-      next: { revalidate: 60 }, // Cache for 60 seconds
+      cache: 'force-cache', // Cache indefinitely for static generation
     })
 
     if (!response.ok) {
@@ -57,7 +57,7 @@ export async function fetchTemplatesFromGitHub(): Promise<Template[]> {
 
         try {
           const readmeResponse = await fetch(readmePath, {
-            next: { revalidate: 3600 }, // Cache for 1 hour
+            cache: 'force-cache', // Cache indefinitely for static generation
           })
           if (readmeResponse.ok) {
             const readmeText = await readmeResponse.text()

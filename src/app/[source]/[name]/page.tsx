@@ -2,6 +2,16 @@ import { TemplatesUiLayoutDetail } from '@/components/templates/templates-ui-lay
 import { fetchTemplatesFromGitHub } from '@/lib/fetch-templates'
 import type { Metadata } from 'next'
 
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const templates = await fetchTemplatesFromGitHub()
+  return templates.map((template) => ({
+    source: template.source.id,
+    name: template.name,
+  }))
+}
+
 export async function generateMetadata({
   params,
 }: {
