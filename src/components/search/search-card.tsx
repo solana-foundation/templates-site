@@ -24,7 +24,7 @@ const TECH_LOGOS = {
 } as const
 
 export const SearchCard = React.memo<SearchCardProps>(({ template, isActive = false, onCardClick, id }) => {
-  const { name, description, tech } = template
+  const { name, description, tech, displayName } = template
 
   const randomRotation = useMemo(() => Math.floor(Math.random() * 360), [])
 
@@ -45,7 +45,7 @@ export const SearchCard = React.memo<SearchCardProps>(({ template, isActive = fa
     return <PlaceholderLogo />
   }
 
-  const templateUrl = `/developers/templates/${template.source.id}/${template.name}`
+  const templateUrl = `/${template.source.id}/${template.name}`
 
   return (
     <Link
@@ -69,7 +69,7 @@ export const SearchCard = React.memo<SearchCardProps>(({ template, isActive = fa
         <div className="flex-shrink-0 text-neutral-400 mt-0.5">{renderLogo()}</div>
 
         <div className="flex-1 min-w-0">
-          <h3 className="text-neutral-100 font-medium text-sm truncate">{name}</h3>
+          <h3 className="text-neutral-100 font-medium text-sm truncate">{displayName || name}</h3>
           <p className="text-neutral-400 text-xs mt-1 line-clamp-2 leading-relaxed">{description}</p>
         </div>
       </div>

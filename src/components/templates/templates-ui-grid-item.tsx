@@ -1,37 +1,57 @@
-import { RepokitTemplate, TemplatesUiImage } from '@/lib/repokit'
+'use client'
+
+import { Template, TemplatesUiImage } from '@/lib/templates'
 import Link from 'next/link'
 import { ExternalLinkIcon } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { fadeIn } from '@/lib/animations'
 
-export function TemplatesUiGridItem({ template }: { template: RepokitTemplate }) {
+const MotionLink = motion(Link)
+
+export function TemplatesUiGridItem({ template }: { template: Template }) {
   return (
-    <Link
-      href={`/developers/templates/${template.source.id}/${template.name}`}
-      className="border rounded-3xl overflow-hidden bg-purple-950/5"
-      passHref
+    <MotionLink
+      href={`/${template.source.id}/${template.name}`}
+      className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-900 to-zinc-950 p-6 transition-transform hover:scale-[1.02] block h-full flex flex-col"
+      variants={fadeIn}
+      initial="hidden"
+      animate="visible"
+      whileHover="hover"
+      whileTap="tap"
+      style={{ willChange: 'transform' }}
     >
-      <div className="flex items-center justify-center">
-        <TemplatesUiImage template={template} />
-      </div>
-      <div className="p-4 space-y-2">
-        <h3 className="text-lg font-bold">{template.name}</h3>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400">{template.description}</p>
-        <div className="flex justify-between items-center">
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">by {template.source.name}</p>
-          <button
-            onClick={(e) => {
-              e.preventDefault()
-              return window.open(template.repoUrl, '_blank', 'noopener,noreferrer')
-            }}
-            title="View Repo"
-            role="link"
-            aria-label="View Repo"
-            type="button"
-            className="text-sm flex items-center gap-1 hover:underline"
-          >
-            <ExternalLinkIcon className="h-4 w-4" />
-          </button>
+      {/* Gradient border effect */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-blue-500/20 opacity-0 transition-opacity group-hover:opacity-100" />
+      <div className="absolute inset-[1px] rounded-2xl bg-gradient-to-br from-zinc-900 to-zinc-950" />
+
+      <div className="relative flex flex-col h-full">
+        <div className="space-y-1.5 mb-4">
+          <div className="flex justify-between items-start gap-2">
+            <h3 className="font-semibold text-base text-white line-clamp-1">{template.displayName || template.name}</h3>
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                return window.open(template.repoUrl, '_blank', 'noopener,noreferrer')
+              }}
+              title="View Repo"
+              role="link"
+              aria-label="View Repo"
+              type="button"
+              className="text-xs flex items-center gap-1 hover:text-purple-400 transition-colors text-zinc-400 flex-shrink-0"
+            >
+              <ExternalLinkIcon className="h-3.5 w-3.5" />
+            </button>
+          </div>
+          <p className="text-[11px] leading-relaxed text-zinc-400 line-clamp-2">{template.description}</p>
+        </div>
+
+        <div
+          className="relative w-full overflow-hidden rounded-lg bg-white/5 backdrop-blur-sm mt-auto"
+          style={{ aspectRatio: '1200/630' }}
+        >
+          <TemplatesUiImage template={template} />
         </div>
       </div>
-    </Link>
+    </MotionLink>
   )
 }

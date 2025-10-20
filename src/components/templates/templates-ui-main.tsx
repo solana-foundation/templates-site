@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button'
-import { useRepokitFilterState } from '@/lib/repokit'
+import { useTemplateFilterState } from '@/lib/templates'
 import { TemplatesUiGrid } from './templates-ui-grid'
 
 export function TemplatesUiMain() {
-  const { clear, templates } = useRepokitFilterState()
+  const { clear, templates } = useTemplateFilterState()
 
   return templates.length ? (
     <TemplatesUiGrid templates={templates} />

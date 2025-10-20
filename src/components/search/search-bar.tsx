@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { RepokitTemplate } from '@/lib/generated/repokit'
+import { Template } from '@/lib/types/templates'
 import { useSearch } from '../hooks/use-search'
 import { useSearchKeyboard } from '../hooks/use-search-keyboard'
 import { SearchInput } from './search-input'
@@ -9,7 +9,7 @@ import { SearchResults } from './search-results'
 import { SearchStatus } from './search-status'
 
 interface SearchBarProps {
-  templates: RepokitTemplate[]
+  templates: Template[]
   onCardClick?: () => void
 }
 
