@@ -24,10 +24,6 @@ export const filters: TemplateFilter[] = [
         id: 'airdrop',
         name: 'Airdrop',
       },
-      {
-        id: 'legacy',
-        name: 'Legacy',
-      },
     ],
     name: 'Use Cases',
   },
