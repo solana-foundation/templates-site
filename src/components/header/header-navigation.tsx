@@ -22,7 +22,7 @@ export const HeaderNavigation = React.memo<HeaderNavigationProps>(
     return (
       <div className={className}>
         {links.map((link) => (
-          <a href={link.href} key={link.label} className={linkClassName} rel="noopener noreferrer">
+          <a href={link.href} key={link.label} className={linkClassName} target="_blank" rel="noopener noreferrer">
             {link.label}
           </a>
         ))}

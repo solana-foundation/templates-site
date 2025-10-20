@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { AppProviders } from '@/components/app-providers'
 import './globals.css'
 import { AppSolanaLayout } from '@/components/app-solana-layout'
@@ -16,8 +16,6 @@ export const metadata: Metadata = {
     ],
     apple: '/icons/apple-touch-icon.png',
   },
-  themeColor: '#14F195',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
@@ -33,6 +31,13 @@ export const metadata: Metadata = {
     title: 'Solana Templates',
     description: 'Templates for create-solana-dapp',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: '#14F195',
 }
 
 export default function RootLayout({
