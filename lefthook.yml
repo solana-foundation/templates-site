@@ -6,4 +6,6 @@ pre-commit:
       exclude:
         - '*.png'
         - '*.svg'
+        - 'CODEOWNERS'
+        - '.prettierignore'
       stage_fixed: true
