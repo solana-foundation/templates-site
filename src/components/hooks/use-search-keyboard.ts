@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { RepokitTemplate } from '@/lib/generated/repokit'
+import { Template } from '@/lib/types/templates'
 
 export interface UseSearchKeyboardReturn {
   activeIndex: number
@@ -9,7 +9,7 @@ export interface UseSearchKeyboardReturn {
 
 export interface UseSearchKeyboardProps {
   isFocused: boolean
-  filteredTemplates: RepokitTemplate[]
+  filteredTemplates: Template[]
   query: string
   onCardClick?: () => void
   clearSearch: () => Promise<void>
@@ -47,7 +47,7 @@ export function useSearchKeyboard({
           e.preventDefault()
           if (activeIndex >= 0 && filteredTemplates[activeIndex]) {
             const template = filteredTemplates[activeIndex]
-            const internalHref = `/developers/templates/${template.source.id}/${template.name}`
+            const internalHref = `/${template.source.id}/${template.name}`
             window.location.href = internalHref
             onCardClick?.()
           }

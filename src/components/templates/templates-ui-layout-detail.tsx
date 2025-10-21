@@ -1,12 +1,23 @@
+'use client'
+
 import Link from 'next/link'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
 import { AppHero } from '@/components/app-hero'
-import { TemplatesUiImage, useRepokitTemplate } from '@/lib/repokit'
+import { TemplatesUiImage } from '@/lib/templates'
 import { TemplatesUiSidebarDetail } from './templates-ui-sidebar-detail'
+import { Template } from '@/lib/types/templates'
 
-export function TemplatesUiLayoutDetail({ name, source }: { name: string; source: string }) {
-  const template = useRepokitTemplate({ name, source })
+export function TemplatesUiLayoutDetail({
+  name,
+  source,
+  templates,
+}: {
+  name: string
+  source: string
+  templates: Template[]
+}) {
+  const template = templates.find((t) => t.name === name && t.source.id === source)
 
   if (!template) {
     return (
@@ -14,7 +25,7 @@ export function TemplatesUiLayoutDetail({ name, source }: { name: string; source
         <AppHero title="Not Found" subtitle={`Template "${source}/${name}" not found.`} />
         <div className="text-center">
           <Button asChild>
-            <Link href="/developers/templates">Back to templates</Link>
+            <Link href="/">Back to templates</Link>
           </Button>
         </div>
       </div>
@@ -26,6 +37,12 @@ export function TemplatesUiLayoutDetail({ name, source }: { name: string; source
       <div className="md:col-span-3 gap-4">
         <div>
           <div>
+            <div className="max-w-5xl mx-auto mb-4">
+              <Button asChild variant="ghost" className="mb-4 px-2">
+                <Link href="/">← Back to templates</Link>
+              </Button>
+              <h1 className="text-3xl font-bold mb-4">{template.displayName || template.name}</h1>
+            </div>
             <div className="border rounded-lg overflow-hidden mb-4 max-w-5xl mx-auto">
               <div className="w-full max-h-96 flex items-center justify-center">
                 <TemplatesUiImage template={template} />

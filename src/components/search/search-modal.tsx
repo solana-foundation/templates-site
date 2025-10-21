@@ -3,7 +3,7 @@
 import { useEffect, useCallback } from 'react'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { SearchBar } from './search-bar'
-import { useRepokitTemplates } from '@/lib/repokit/use-repokit-templates'
+import { useTemplates } from '@/lib/templates/use-templates'
 
 interface SearchModalProps {
   open: boolean
@@ -11,7 +11,7 @@ interface SearchModalProps {
 }
 
 export function SearchModal({ open, onOpenChange }: SearchModalProps) {
-  const templates = useRepokitTemplates()
+  const templates = useTemplates()
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {

@@ -1,11 +1,11 @@
 import React from 'react'
-import { RepokitTemplate } from '@/lib/generated/repokit'
+import { Template } from '@/lib/types/templates'
 import { TemplateTag } from '@/types'
 import { SearchCard } from './search-card'
 import { inferTechFromKeywords } from './utils'
 
 export interface SearchResultsProps {
-  filteredTemplates: RepokitTemplate[]
+  filteredTemplates: Template[]
   activeIndex: number
   showEmptyState: boolean
   isShowingFeatured: boolean

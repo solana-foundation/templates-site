@@ -1,8 +1,9 @@
 'use client'
-import { RepokitTemplate } from '@/lib/repokit'
+import { Template } from '@/lib/templates'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { CheckIcon, CopyIcon } from 'lucide-react'
+import { highlightCode } from '@/lib/syntax-highlight'
 
 const pms = ['npm', 'pnpm', 'yarn', 'bun']
 
@@ -20,11 +21,16 @@ function getCommand(pm: string, template: string) {
   }
 }
 
-export function TemplatesUiGenerateCommand({ template: { source, path } }: { template: RepokitTemplate }) {
+export function TemplatesUiGenerateCommand({ template: { source, path } }: { template: Template }) {
   const [selected, setSelected] = useState('npm')
   const [isCopied, setIsCopied] = useState(false)
+  const [highlightedHtml, setHighlightedHtml] = useState('')
   const template = `${source.owner}/${source.repo}/${path}`
   const command = getCommand(selected, template)
+
+  useEffect(() => {
+    highlightCode(command, 'bash').then(setHighlightedHtml)
+  }, [command])
 
   useEffect(() => {
     if (isCopied) {
@@ -56,8 +62,11 @@ export function TemplatesUiGenerateCommand({ template: { source, path } }: { tem
         ))}
       </div>
       <div className="relative">
-        <pre className="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-4 my-4 pr-12 truncate">{command}</pre>
-        <Button variant="ghost" size="icon" className="absolute top-1/2 right-2 -translate-y-1/2" onClick={handleCopy}>
+        <div
+          className="rounded-lg my-4 pr-12 overflow-x-auto max-w-full [&>pre]:!bg-zinc-900 [&>pre]:!m-0 [&>pre]:!p-4 [&>pre]:!rounded-lg [&>pre]:overflow-x-auto [&>pre]:max-w-full [&>pre]:text-xs [&_code]:text-xs"
+          dangerouslySetInnerHTML={{ __html: highlightedHtml }}
+        />
+        <Button variant="ghost" size="icon" className="absolute top-2 right-2" onClick={handleCopy}>
           {isCopied ? <CheckIcon className="h-4 w-4" /> : <CopyIcon className="h-4 w-4" />}
         </Button>
       </div>

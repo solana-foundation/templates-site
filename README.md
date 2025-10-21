@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Solana Templates Site
 
-## Getting Started
+A Next.js website that showcases templates from the [solana-foundation/templates](https://github.com/solana-foundation/templates) repository. Users can browse, search, and filter Solana dApp templates to find the right starting point for their project.
 
-First, run the development server:
+## Overview
+
+This site dynamically fetches template metadata from the `templates.json` file in the templates repository and displays it in an interactive, searchable interface. Each template includes:
+
+- Description and use case
+- Framework and SDK information
+- README documentation with syntax highlighting
+- Preview images
+- Command-line generation instructions
+
+## Architecture
+
+### Stack
+
+- Next.js 15 (App Router with Turbopack)
+- React 19
+- Tailwind CSS v4
+- TypeScript
+- Radix UI components
+- Framer Motion for animations
+- Shiki for syntax highlighting
+
+### Data Flow
+
+1. **Template Metadata**: Fetched from `https://raw.githubusercontent.com/solana-foundation/templates/main/templates.json`
+2. **README Content**: Fetched per-template from the templates repo
+3. **Images**: Loaded from template directories in the templates repo
+4. **Caching**: Template data is cached for 60 seconds, READMEs for 1 hour
+
+The site is statically generated at build time and revalidates on-demand.
+
+## Development
+
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-## Learn More
+## Template Data Source
 
-To learn more about Next.js, take a look at the following resources:
+The site pulls template information from the [solana-foundation/templates](https://github.com/solana-foundation/templates) repository. The templates repo generates a `templates.json` file that contains:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Template metadata (name, description, keywords)
+- Path to template directory
+- Image paths for previews
+- Display names and use cases
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This JSON file is the single source of truth for what templates are displayed on the site.
 
-## Deploy on Vercel
+## Commands
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run Next.js linter
+- `pnpm format` - Format code with Prettier
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+The site can be deployed to any platform that supports Next.js applications. It requires no environment variables or build-time configuration.

@@ -1,4 +1,4 @@
-import { RepokitTemplate } from '@/lib/generated/repokit'
+import { Template } from '@/lib/types/templates'
 import { Tech } from '@/types'
 
 export function inferTechFromKeywords(keywords: string[]): Tech {
@@ -18,8 +18,8 @@ export const sanitizeSearchInput = (input: string): string => {
     .trim()
 }
 
-export const createFeaturedTemplates = (templates: RepokitTemplate[]): RepokitTemplate[] => {
-  const techGroups: Record<Tech, RepokitTemplate[]> = {
+export const createFeaturedTemplates = (templates: Template[]): Template[] => {
+  const techGroups: Record<Tech, Template[]> = {
     next: [],
     vite: [],
     react: [],
@@ -33,7 +33,7 @@ export const createFeaturedTemplates = (templates: RepokitTemplate[]): RepokitTe
     techGroups[tech].push(template)
   })
 
-  const featured: RepokitTemplate[] = []
+  const featured: Template[] = []
 
   Object.values(techGroups).forEach((group) => {
     if (group.length === 0) return
@@ -44,7 +44,7 @@ export const createFeaturedTemplates = (templates: RepokitTemplate[]): RepokitTe
   return featured.slice(0, 3) // Max 3 items
 }
 
-export const filterTemplates = (templates: RepokitTemplate[], query: string): RepokitTemplate[] => {
+export const filterTemplates = (templates: Template[], query: string): Template[] => {
   if (!query || query.length < 2) return []
 
   const searchTerm = query.toLowerCase()
@@ -53,7 +53,10 @@ export const filterTemplates = (templates: RepokitTemplate[], query: string): Re
     const tech = inferTechFromKeywords(template.keywords)
     const searchableText = [
       template.name,
+      template.displayName || '',
       template.description,
+      template.usecase || '',
+      ...template.keywords,
       tech,
       // Tech aliases
       tech === 'next' ? 'next.js nextjs' : '',

@@ -1,8 +1,9 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { AppProviders } from '@/components/app-providers'
 import './globals.css'
 import { AppSolanaLayout } from '@/components/app-solana-layout'
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration'
+import { TemplatesProviderWrapper } from '@/components/providers/templates-provider-wrapper'
 
 export const metadata: Metadata = {
   title: 'Solana Templates',
@@ -16,8 +17,6 @@ export const metadata: Metadata = {
     ],
     apple: '/icons/apple-touch-icon.png',
   },
-  themeColor: '#14F195',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
@@ -35,6 +34,13 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: '#14F195',
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -49,7 +55,9 @@ export default function RootLayout({
           <div className="absolute inset-0 bg-gradient-to-bl from-pink-400/3 via-transparent to-transparent"></div>
           <div className="relative z-10">
             <AppProviders>
-              <AppSolanaLayout>{children}</AppSolanaLayout>
+              <TemplatesProviderWrapper>
+                <AppSolanaLayout>{children}</AppSolanaLayout>
+              </TemplatesProviderWrapper>
             </AppProviders>
           </div>
         </div>

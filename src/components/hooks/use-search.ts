@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, useRef, useEffect, useTransition } from 'react'
-import { useRepokitUrlState } from '@/lib/repokit/use-repokit-url-state'
-import { RepokitTemplate } from '@/lib/generated/repokit'
+import { useTemplateUrlState } from '@/lib/templates/use-template-url-state'
+import { Template } from '@/lib/types/templates'
 import { sanitizeSearchInput, createFeaturedTemplates, filterTemplates } from '../search/utils'
 
 export interface UseSearchReturn {
@@ -9,8 +9,8 @@ export interface UseSearchReturn {
   isPending: boolean
   isFocused: boolean
 
-  featuredTemplates: RepokitTemplate[]
-  filteredTemplates: RepokitTemplate[]
+  featuredTemplates: Template[]
+  filteredTemplates: Template[]
   showResults: boolean
   showEmptyState: boolean
   isShowingFeatured: boolean
@@ -23,8 +23,8 @@ export interface UseSearchReturn {
   abortControllerRef: React.MutableRefObject<AbortController | null>
 }
 
-export function useSearch(templates: RepokitTemplate[]): UseSearchReturn {
-  const { search: query, setSearch } = useRepokitUrlState()
+export function useSearch(templates: Template[]): UseSearchReturn {
+  const { search: query, setSearch } = useTemplateUrlState()
   const [isPending, startTransition] = useTransition()
   const [isFocused, setIsFocused] = useState(false)
   const [debouncedQuery, setDebouncedQuery] = useState(query)
