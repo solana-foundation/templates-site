@@ -6,11 +6,6 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
-        pathname: '/GuiBibeau/solana-templates/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'raw.githubusercontent.com',
         pathname: '/solana-foundation/templates/**',
       },
     ],

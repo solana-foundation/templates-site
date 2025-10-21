@@ -3,9 +3,9 @@
  * Change these values to switch between fork/branch or point to main after PR merge
  */
 export const GITHUB_CONFIG = {
-  owner: 'GuiBibeau',
-  repo: 'solana-templates',
-  branch: 'feat/remove-repokit-dependency',
+  owner: 'solana-foundation',
+  repo: 'templates',
+  branch: 'main',
 } as const
 
 /**
